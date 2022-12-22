@@ -1,0 +1,44 @@
+{% extends 'missing/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+
+
+    welcome {{ user.profile.firstname }}
+    <div class='row'>
+        <div class="col-md-4 col-lg-3">
+            <h3 style ='text-align: left;'>Reported Events<label style="background-color:springgreen;border: 2px grey solid;padding:5px;border-radius: 12px;margin-left: 5px;"> {{ mis_count }}</label></h3>
+        </div>
+        <div class="col-md-6 col-lg-7"></div>
+        <div class="col-md-2 col-lg-2">
+            <figure class="image-right">
+                <img  style="border-radius: 12px;" src="{{ user.profile.profile_pic.url }}" alt="pic" height=150, width=150>
+            </figure>
+        </div>
+    </div>
+        
+
+
+
+    
+    {% for i in missings %}
+    
+        <div style="text-align: left;">
+            <p><a style="font-size:18px;font-family: sans-serif;font-weight:500;margin:5px;list-style: none;color: black;" href="{% url 'viewmissing' i.id %}"> {{ i.first_name|title}} {{ i.last_name|title }}</a><span style="text-align: right;">reported {{i.created|timesince }}</span></p>
+        <div>
+        
+           
+        
+    
+    <hr>
+    {% endfor %}
+    
+
+
+
+
+{% endblock %}

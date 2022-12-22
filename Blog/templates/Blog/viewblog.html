@@ -1,0 +1,51 @@
+{%  extends  'missing/base.html' %}
+{% load static %}
+
+
+{%  block content%}
+
+
+{% load crispy_forms_tags %}
+
+
+<h3>{{ posts.title }}</h3>
+<h4>Genre: {{ posts.genre }}</h4>
+<h5>---{{   posts.date|date:'F jS Y'|upper }}---</h5>
+<hr>
+<div class="container-fluid">
+<div class="row">
+    <textarea readonly  class="blog" style="border: turquoise 2px solid;overflow: auto;background-color: rgb(211, 215, 219);border-radius:12px ;" >{{ posts.story|safe }}</textarea>
+</div>
+    <div class="row">
+        <div class="col-sm-9 col-md-10 col-lg-11"></div>
+        <div class="col-sm-3 col-md-2 col-lg-1"><button style="border-radius: 12px 30px;background-color: mediumspringgreen;text-align: center;font-family: fantasy;font-size: 0.85rem;" id="btn-appear">comment</button></div>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-sm-6 col-md-7 col-lg-8"></div>
+        <div class="col-sm-6 col-md-5 col-lg-4">
+            <form  method="post" id = "comment-form" action="{% url 'Blog:post_comment' posts.id %}">
+                 {% csrf_token %}
+                <table>
+                {{ comment_form | crispy }}
+                </table>
+                <button class="button button1" id='btn-disappear'  type='submit'>submit</button>
+            </form>
+        </div>
+        
+    </div>
+    <div style="display: flex;justify-content: center;align-items: center;flex-wrap: wrap;">
+
+        {% for i in comments %}
+        <div style="display: flex;flex: 18%;flex-direction:column;margin: 5px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);justify-content: center ;align-items: center;">
+            <b>{{  i.email }}</b><b>{{ i.created|timesince }} ago</b>
+            <p>{{ i.body }}</p>
+        </div>
+            
+        
+    
+    {% endfor %}
+    </div>
+    
+</div>
+{%  endblock %}

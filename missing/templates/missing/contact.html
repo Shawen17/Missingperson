@@ -1,0 +1,26 @@
+{% extends 'missing/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!-- <div style="margin: 20px;height:100%;"> -->
+    <h2 class="page-title" style="margin: 20px;" >kindly fill us in on happenings</h2>
+    
+    
+    <div class="row d-flex justify-content-center">
+    
+        <form class="form-width", method = 'POST',action="{% url 'contact' %}">
+            {% csrf_token %}
+        
+            {{ contact_form | crispy }}
+            
+            <button class="button button1"   type='submit' >Send</button>
+        </form>
+
+    </div>
+
+<!-- </div> -->
+
+
+
+{% endblock %}

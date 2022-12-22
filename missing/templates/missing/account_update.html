@@ -1,0 +1,25 @@
+{% extends 'missing/base.html' %}
+
+
+{%  block content %}
+
+
+{% load crispy_forms_tags %}
+
+<div class="account">
+
+<h2 class="page-title" style="margin: 20px;">kindly update your account {{ user.username }}</h2>
+
+<div class="row d-flex justify-content-center">
+    <form class="form-width", method="POST",enctype="multipart/form-data",  action="{% url 'account_update' %}">
+        {% csrf_token %}
+        <table>
+            {{ profile_form | crispy }}
+        </table>
+        <button class="button button1"  type="submit">submit</button>
+    </form>
+</div>
+</div>
+
+
+{% endblock %}

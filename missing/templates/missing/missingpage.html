@@ -1,0 +1,46 @@
+{% extends 'missing/base.html' %}
+
+{% block content %}
+
+
+
+
+
+<h3 class="page-title" style="margin: 20px;" >Let's reunite them with their families</h3>
+
+<div class="container-fluid">
+    <div style="display: flex;flex-wrap: wrap;align-items: center;justify-content: space-between;">
+        
+        {% for i,j,k,l,m,n,o in zipped_data %}
+        <div class="items-dsp">
+            <div class="container">
+            
+                <div class="menu">
+                    <a href="{% url 'Blog:detail' i %}"><h5 style="font-size: 0.85rem;">{{ j }}</h5></a>
+                    <img style="border-radius: 8px;" src="{{ m.url }}" alt="pic" height=170, width=150>
+                    <h3 style="letter-spacing: -2px;"> {{ k }} {{ l }} </h3>
+                    <p style="font-size: 15px;">{{n}}</p>
+                    <p>{{o}}</p>
+                    
+                </div>
+            </div>  
+        </div>
+        {% endfor %}   
+    </div>  
+    </div>  
+</div> 
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

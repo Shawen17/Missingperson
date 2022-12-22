@@ -1,0 +1,35 @@
+
+{% extends 'missing/base.html'   %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div style="background: url('/static/missing/nature-landscape.jpg') no-repeat; margin: 20px;width: 100%;height: 100%;">
+    <h1 class="page-title">Login here</h1>
+    <h2>{{ error }}</h2>
+
+    <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;width: 100%;">
+        <div class="mx-auto social-container my-2 order-md-1" style="display: flex;flex-direction: column;margin-bottom: 30px;">
+            <button id='ig-color' class="btn mb-2 social-text">
+                <i class="fab fa-instagram"></i><a href="#">Login with Instagram</a>
+            </button>
+                
+            <button id='fb-color' class="btn mb-2 social-text">
+                <i class="fab fa-facebook-f"></i><a href="#">Login with Facebook</a>
+            </button>
+            
+            <button id='ld-color' class="btn mb-2 social-text">
+                <i class="fab fa-linkedin"></i><a href="#">Login with LinkedIn</a>
+            </button>
+        </div>
+        <form class="form-width" method='POST',action="{% url 'loginuser' %}">
+            
+                {% csrf_token %}
+                {{ form | crispy }}
+            
+            <button class="button button1" type='submit' >Login</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

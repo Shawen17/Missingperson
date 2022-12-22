@@ -1,0 +1,124 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+   
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta  name="viewport" content="width=device-width,  initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet"  href="{% static 'missing/base.css' %}" />
+    <link rel="icon" type="image/jpg"  href="{% static 'missing/logo.png' %}" />
+    <title>Missing Person</title>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-md navbar-light bg-warning">
+<div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">
+         <img src="{% static 'missing/logo.png' %}" width="30" height="30" class="d-inline-block align-top">
+        <span>Missingperson</span>
+    </a>
+    <a class="navbar-brand" href="{% url 'Blog:all_blogs' %}"><span style="color: rgb(16, 196, 202);">Blog</span>
+   </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        
+    {% if user.is_authenticated %}
+        <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item {{ createmissing }}">
+                    <a class="nav-link" href="{% url 'createmissing' %}">Report an Event</a>
+                </li>
+                <li class="nav-item {{ createmissing }}">
+                    <a class="nav-link" href="{% url 'user_account' %}">dashboard</a>
+                </li>
+                <li class="nav-item {{ edit_profile }}">
+                    <a class='nav-link' href="{% url 'account_update' %}">
+                        <form  method="POST" action="{% url 'account_update' %}">
+                            {% csrf_token %}
+                            <button style ='background-color:transparent;border: none;',id="signOutBtn" type="submit">Update Profile</button>
+                        </form>
+                    </a>
+                </li>
+        </ul>
+    {% endif %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'missingperson' %}">Missing</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'foundperson' %}">Found</a>
+        </li>     
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'logoutuser' %}" onclick="$('#signOutBtn').click()" class="nav-link">Logout</a>
+                    <a>
+                        <form style='display: none;' method="POST" action="{% url 'logoutuser' %}">
+                            {% csrf_token %}
+                            <button id="signOutBtn" type="submit">Logout</button>
+                        </form>
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signupuser' %}">SignUp</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'loginuser' %}">Login</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+</nav>
+<div class="container-fluid">
+    
+        {% block content %}{% endblock %}
+    
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+    const form = document.querySelector('#comment-form');
+    const btn_appear = document.querySelector('#btn-appear');
+    const btn_disappear =document.getElementById('btn-disappear');
+    btn_appear.addEventListener('click',formAppear);
+    btn_disappear.addEventListener('click',formDisappear);
+    function formAppear(){
+        form.style.display = 'block';
+    }
+    function formDisappear(){
+        form.style.display = 'none';
+    }
+</script>
+</body>
+
+    
+        
+    <div class="footer" style="margin-top: 20px;height: 140px;">
+        
+        <div class="footer-items">
+            
+            <div><a class="link" href=" {% url 'missingperson'  %} ">Missing People</a></div>
+            <div><a class="link" href=" {% url 'foundperson'  %} ">Found People</a></div>
+            <div><a class="link" href=" {% url 'contact'  %} ">Contact us</a></div>
+        </div>
+        <div class="footer-items">
+            <div><a class="link" href="{% url 'policy' %}">Privacy Policy</a></div>
+            <div><a class="link" href="{% url 'about' %}">About us</a></div>
+            <div><a class="link" href="{% url 'terms' %}">Term of use</a></div>
+        </div>
+    </div>
+</div>
+</html>

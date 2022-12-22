@@ -1,0 +1,62 @@
+{% extends 'missing/base.html' %}
+
+{% block content %}
+{%  load static %}
+
+<div class="home-item">
+    <div class="home-item1" style="flex-direction: column;">
+        <h1 style="font-weight: bolder;color: darkgoldenrod;">
+            Reuniting Families is our Major Concern.
+        </h1>
+        <p style="font-size: larger;margin-bottom: 25px;">
+            As a community, let's come together and embrace the spirit of oneness by checking and being on the lookout for missing faces.
+
+        </p>
+    </div>
+    <div  class="home-item1">
+        <img src="{% static 'missing/family-bond1.jpg' %}" width="70%" />
+
+    </div>
+
+</div>
+<div class="home-item1" style="margin:30px 0px 30px;">
+    <div class="home-msg" >
+        <p class="desc">Don't be unconcerned until it happens to you, check regularly and help reunite families,
+            we are all we have got
+        </p>
+        <form method = 'GET',action="{% url 'createmissing' %}">
+            <button class="button button1" type="submit"> Report</button>
+        </form>
+        <p class="desc">
+            Child trafficking and other forms of trafficking are still with us, do we watch and do nothing or we get into action and tackle this menance 
+            that has destroyed the joy of many household. We all have a role to play, let's start today by uploading and checking this platform everyday and when 
+            we see something, let's say something.
+        </p>
+    </div>
+</div>
+<div style="margin-bottom: 30px;">
+    <h4 style="color: darkgoldenrod;display: flex;">Reported Missing <span style="margin-left: auto;"><a href="{% url 'missingperson' %}" class="link" style="color: darkgoldenrod;" >view all</a></span></h4>
+</div>
+<div style="display: flex;flex-wrap: wrap;align-items: center;justify-content: space-between;">
+        
+    {% for i in missings %}
+    <div class="items-dsp">
+        <div class="container">
+        
+            <div class="menu">
+                <img style="border-radius: 8px;" src="{{ i.image.url }}" alt="pic" height=170, width=150>
+                <h3 style="letter-spacing: -2px;"> {{ i.first_name }} {{ i.last_name }} </h3>
+                <p style="font-size: 15px;">{{n}}</p>
+                <p>{{i.sex}}</p>
+                <p>{{i.created|timesince}}</p>
+                
+            </div>
+        </div>  
+    </div>
+    {% endfor %}   
+</div> 
+    
+    
+
+
+{% endblock %}

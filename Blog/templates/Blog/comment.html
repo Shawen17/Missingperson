@@ -1,0 +1,14 @@
+{% load static %}
+
+{% if new_comment  %}
+
+    <h5>wait</h5>
+    {% else %}
+    <form method="post">
+        
+        {% csrf_token %}
+        {{comment_form.as_p }}
+     <button type='submit' style='background-color: cadetblue;'><img src="{% static 'missing/comment.jpg' %}" alt="comment logo"></button>
+    
+    </form>
+    {% endif %}

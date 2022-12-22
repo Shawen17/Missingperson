@@ -1,0 +1,38 @@
+{% extends 'missing/base.html' %}
+
+{% block content %}
+
+
+
+
+
+
+<h3 class="page-title" style="margin: 20px;" >Finally Reunited With Family</h3>
+
+<div class="container-fluid">
+    <div style="display: flex;flex-wrap: wrap;align-items: center;justify-content: space-between;">
+        
+        {% for i in founds %}
+        <div  class="items-dsp">
+            <div class="container">
+                <div class="menu">
+                    <img style="border-radius: 8px;" src="{{ i.image.url }}" alt="pic" height=150, width=150>
+                    <h3  style="letter-spacing: -2px;"> {{ i.first_name }} {{ i.last_name }} </h3>
+                </div>
+            </div>  
+        </div>
+        {% endfor %}  
+    </div>  
+            
+            
+</div>  
+   
+
+
+
+
+
+
+
+
+{% endblock %}

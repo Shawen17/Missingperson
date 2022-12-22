@@ -1,0 +1,39 @@
+{% extends 'missing/base.html' %}
+
+{% block content %}
+{%  load static %}
+
+
+    <section>
+      <div>
+        <h2 class="page-title">About Us</h2>
+        <p style="font-size: larger;">We care about the safety and return of missing family members.</p>
+      </div>
+
+      <div class="standing_man_container">
+        <div class="standing_man_img">
+          <img src="{% static 'missing/family-bond.jpg' %}" alt=" new" />
+        </div>
+        <div >
+          <p style="font-size: larger;margin-bottom: 20px;">
+            Numerous media has been used to anounce to the public about
+            missing people such as local news papers, social media platforms
+            as well aspictures posted within the locality of the missing
+            people.
+          </p>
+          <p style="font-size: larger;margin-bottom: 20px;">
+            Missingpersong.com.ng a proper hub has been well thought of to
+            help tackle the issue of missing people bybcreating a platform
+            that is totally free, where the public can see and recognise
+            missing people and reunite them with their families.
+          </p>
+          <p style="font-size: larger;margin-bottom: 20px;">
+            All these good ways the public can help get missing people
+            reunited to their families but do not offer a major huib tyhat
+            people can visit every now and then to see missing people and to
+            post missing people to the public.
+          </p>
+        </div>
+      </div>
+    </section>
+    {% endblock %}
